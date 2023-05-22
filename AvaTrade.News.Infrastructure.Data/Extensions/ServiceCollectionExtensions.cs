@@ -14,5 +14,6 @@ public static class ServiceCollectionExtensions
             options => options.UseSqlServer(configuration["ConnectionString"]));
 
         services.AddScoped<IArticleRepository, ArticleRepository>();
+        services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
     }
 }

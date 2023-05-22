@@ -13,6 +13,7 @@ public class NewsDbContext: DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new ArticleConfiguration());
+        modelBuilder.ApplyConfiguration(new SubscriptionConfiguration());
 
         base.OnModelCreating(modelBuilder);
     }
