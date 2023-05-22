@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>dotnet-AvaTrade.News.NewsFeeder-0128b97d-78ac-4a0d-81b3-731354905ee6</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AvaTrade.News.Application\AvaTrade.News.Application.csproj" />
+    <ProjectReference Include="..\AvaTrade.News.Infrastructure.Data\AvaTrade.News.Infrastructure.Data.csproj" />
+    <ProjectReference Include="..\AvaTrade.News.Infrastructure.PolygonNewsFetcher\AvaTrade.News.Infrastructure.PolygonNewsFetcher.csproj" />
+  </ItemGroup>
+</Project>
