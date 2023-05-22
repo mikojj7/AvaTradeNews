@@ -1,6 +1,7 @@
 ﻿using AvaTrade.News.Application.Common;
 using AvaTrade.News.Application.Interfaces;
 using AvaTrade.News.Application.Interfaces.Repositories;
+using AvaTrade.News.Application.Services;
 using AvaTrade.News.Domain.Entities;
 using MediatR;
 
@@ -13,11 +14,16 @@ public class ImportNewsCommand : IRequest<ServiceResult>
 public class ImportNewsCommandHandler : IRequestHandler<ImportNewsCommand, ServiceResult>
 {
     private readonly INewsFetcher _newsFetcher;
+    private readonly IInstrumentMapper _instrumentMapper;
     private readonly IArticleRepository _articleRepository;
 
-    public ImportNewsCommandHandler(INewsFetcher newsFetcher, IArticleRepository articleRepository)
+    public ImportNewsCommandHandler(
+        INewsFetcher newsFetcher,
+        IInstrumentMapper instrumentMapper,
+        IArticleRepository articleRepository)
     {
         _newsFetcher = newsFetcher;
+        _instrumentMapper = instrumentMapper;
         _articleRepository = articleRepository;
     }
 
@@ -38,7 +44,7 @@ public class ImportNewsCommandHandler : IRequestHandler<ImportNewsCommand, Servi
                 Author = article.Author,
                 PublishedDateTime = article.PublishedDateTime,
                 FetchedDateTime = DateTime.UtcNow,
-                InstrumentName = string.Empty
+                InstrumentName = _instrumentMapper.GetInstrumentName(article.Title)
             });
         }
 

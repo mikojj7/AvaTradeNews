@@ -1,6 +1,7 @@
 using AvaTrade.News.Application.Models;
 using AvaTrade.News.Application.Modules.News.Queries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AvaTrade.News.WebAPI.Controllers;
@@ -23,5 +24,13 @@ public class NewsController : ControllerBase
     {
         var result = await _mediator.Send(new GetAllArticlesQuery());
         return result;  
+    }
+
+    [HttpGet("instruments/all")]
+    [AllowAnonymous]
+    public IActionResult GetLatestForAllInstruments(int limitForInstrument)
+    {
+        //send a query to load all 
+        return Ok();
     }
 }

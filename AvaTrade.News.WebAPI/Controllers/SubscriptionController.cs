@@ -19,7 +19,7 @@ public class SubscriptionController: ControllerBase
     public async Task<IActionResult> SubscribeUser()
     {
         //load userId from httpContext through httpContextAccessor
-        var userId = "";
+        var userId = Guid.NewGuid().ToString();
         await _mediator.Send(new SubscribeUserCommand(userId));
 
         return Ok();
